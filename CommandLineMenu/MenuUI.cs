@@ -3,6 +3,9 @@
 public class MenuUI : IMenuCLI
 {
     private int _selectedOption = 0;
+
+    public ConsoleColor SelectedColor { get; set; } = ConsoleColor.Cyan;
+
     public (int, string) CliMenu(string? question, params string[] options)
     {
         int length = options.Length;
@@ -34,7 +37,7 @@ public class MenuUI : IMenuCLI
         for (int i = 0; i < length; i++) {
             // print the selected option in a different color and underscore it
             if (i == _selectedOption) {
-                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.ForegroundColor = SelectedColor;
                 Console.WriteLine(IMenuCLI.UNDERLINE + options[i] + IMenuCLI.RESET);
                 Console.ResetColor();
             } else {
