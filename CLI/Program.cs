@@ -17,7 +17,7 @@ namespace CLI
             (index, option) = menu.CliMenu("Select framework: ", options);
             Console.WriteLine($"Selected {options[index]} at index {index}");
 
-            (index, option) = menu.CliMenu(null, ["Male", "Female", "March 14", "Others"]);
+            (index, option) = menu.CliMenu("Choose gender", "Male", "Female", "March 14", "Others");
             Console.WriteLine($"Selected {option} at index {index}");
 
             (index, option) = menu.CliMenu(null, options);
