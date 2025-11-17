@@ -1,4 +1,5 @@
 ﻿using CommandLineMenu;
+using ConsoleUtils;
 
 namespace CLI
 {
@@ -6,22 +7,22 @@ namespace CLI
     {
         static void Main(string[] args)
         {
-            Main main = new();
-            IMenuCLI menu = new MenuUI();
+            IUI ui = new ConsoleUI();
+            IMenuCLI menu = new MenuUI(ui);
 
             string[] options = ["Pizza", "Egg", "Egg 2", "water"];
             var (index, option) = menu.CliMenu(null, options);
-            Console.WriteLine($"Selected {options[index]} at index {index}");
+            Console.WriteLine($"\nSelected {options[index]} at index {index}\n");
 
             options = ["React", "Vue", "potatis"];
             (index, option) = menu.CliMenu("Select framework: ", options);
-            Console.WriteLine($"Selected {options[index]} at index {index}");
+            Console.WriteLine($"\nSelected {options[index]} at index {index}\n");
 
             (index, option) = menu.CliMenu("Choose gender", "Male", "Female", "March 14", "Others");
-            Console.WriteLine($"Selected {option} at index {index}");
+            Console.WriteLine($"\nSelected {option} at index {index}\n");
 
             (index, option) = menu.CliMenu(null, options);
-            Console.WriteLine($"Selected {options[index]} at index {index}");
+            Console.WriteLine($"\nSelected {options[index]} at index {index}\n");
         }
     }
 }
