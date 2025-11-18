@@ -11,6 +11,8 @@ public class MenuUI(IUI ui) : IMenuCLI
 
     public (int, string) CliMenu(string? question, params string[] options)
     {
+        _ui.HideCursor();
+
         int length = options.Length;
         bool first = true;
         ConsoleKey key;
@@ -24,6 +26,8 @@ public class MenuUI(IUI ui) : IMenuCLI
             key = MoveSelection(length);
             first = false;
         } while (key != ConsoleKey.Enter);
+
+        _ui.ShowCursor();
 
         return (_selectedOption, options[_selectedOption]);
     }
