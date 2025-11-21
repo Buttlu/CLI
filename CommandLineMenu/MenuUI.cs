@@ -8,8 +8,11 @@ public class MenuUI(IUI ui) : IMenuCLI
     private readonly IUI _ui = ui;
 
     public ConsoleColor SelectedColor { get; set; } = ConsoleColor.Cyan;
+    public (int index, string option) CliMenu(params string[] options) => CliMenu("", false, options);
+    public (int index, string option) CliMenu(string question, params string[] options) => CliMenu(question, false, options);
+    public (int index, string option) CliMenu(bool printTutorial = false, params string[] options) => CliMenu("", printTutorial, options);
 
-    public (int, string) CliMenu(string? question, params string[] options)
+    public (int index, string option) CliMenu(string question, bool printTutorial = false, params string[] options)
     {
         _ui.HideCursor();
 
@@ -17,10 +20,14 @@ public class MenuUI(IUI ui) : IMenuCLI
         bool first = true;
         ConsoleKey key;
         _selectedOption = 0;
-
+        
+        if (printTutorial)
+            _ui.Println("Move using up and down arrows, select using enter");
+        
         if (!string.IsNullOrWhiteSpace(question))
             _ui.Println(question);
 
+        // Prints the menu and gets input until the user makes a selection
         do {
             PrintMenu(options, length, first);
             key = MoveSelection(length);
@@ -38,17 +45,17 @@ public class MenuUI(IUI ui) : IMenuCLI
         if (!first)
             MoveUpCursor(length);
 
-        // Text isn't cleared and is instead just overwritten,
-        // has a bonus of not the menu not flickering since the text isn't dissapearing and reappearing constantly
+            // Text isn't cleared and is instead just overwritten,
+            // has a bonus of not the menu not flickering since the text isn't dissapearing and reappearing constantly
 
-        for (int i = 0; i < length; i++) {
-            // print the selected option in a different color and underscore it
-            if (i == _selectedOption) {
-                _ui.Println(IMenuCLI.UNDERLINE + options[i] + IMenuCLI.RESET, SelectedColor);
-            } else {
-                _ui.Println(options[i]);
+            for (int i = 0; i < length; i++) {
+                // print the selected option in a different color and underscore it
+                if (i == _selectedOption) {
+                    _ui.Println(IMenuCLI.UNDERLINE + options[i] + IMenuCLI.RESET, SelectedColor);
+                } else {
+                    _ui.Println(options[i]);
+                }
             }
-        }
     }
 
     // Moves up the cursor to the start of the current menu
@@ -72,5 +79,5 @@ public class MenuUI(IUI ui) : IMenuCLI
             _selectedOption = Math.Min(_selectedOption, length - 1);
         }
         return key;
-    }
+    }    
 }

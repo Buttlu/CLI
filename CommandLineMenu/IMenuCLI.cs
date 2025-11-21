@@ -9,10 +9,33 @@ public interface IMenuCLI
     internal static string RESET { get => "\x1b[24m"; }
 
     /// <summary>
-    /// Acceps an optional question and an array of string options
+    /// Accepts an array of string options
     /// </summary>
-    /// <param name="question">Question that's printed above the options if sent in</param>
     /// <param name="options">String array of options to display</param>
     /// <returns>returns the index and text of the selected option</returns>
-    public (int, string) CliMenu(string? question, params string[] options);
+    public (int index, string option) CliMenu(params string[] options);
+
+    /// <summary>
+    /// Accepts a bool for displaying the tutorial and an array of string options
+    /// </summary>
+    /// <param name="printTutorial">Display the button tutorials</param>
+    /// <param name="options">String array of options to display</param>
+    /// <returns>returns the index and text of the selected option</returns>
+    public (int index, string option) CliMenu(bool printTutorial, params string[] options);
+
+    /// <summary>
+    /// Accepts a question and an array of string options
+    /// </summary>
+    /// <param name="question">Question that's printed above the options</param>
+    /// <param name="options">String array of options to display</param>
+    /// <returns>returns the index and text of the selected option</returns>
+    public (int index, string option) CliMenu(string question, params string[] options);
+
+    /// <summary>
+    /// Accepts a question, a bool to decide if the button tutorial should be displayed, and an array of string options
+    /// </summary>
+    /// <param name="question">Question that's printed above the options</param>
+    /// <param name="options">String array of options to display</param>
+    /// <returns>returns the index and text of the selected option</returns>
+    public (int index, string option) CliMenu(string question, bool printTutorial, params string[] options);
 }
