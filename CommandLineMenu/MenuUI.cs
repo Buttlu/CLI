@@ -35,7 +35,7 @@ public class MenuUI(IUI ui) : IMenuCLI
         } while (key != ConsoleKey.Enter);
 
         _ui.ShowCursor();
-
+        _ui.Println("");
         return (_selectedOption, options[_selectedOption]);
     }
 

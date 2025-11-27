@@ -12,17 +12,17 @@ namespace CLI
 
             string[] options = ["Pizza", "Egg", "Egg 2", "water"];
             var (index, option) = menu.CliMenu(true, options);
-            Console.WriteLine($"\nSelected {options[index]} at index {index}\n");
+            Console.WriteLine($"Selected {options[index]} at index {index}\n");
 
             options = ["React", "Vue", "potatis"];
             (index, option) = menu.CliMenu("Select framework: ", options);
-            Console.WriteLine($"\nSelected {options[index]} at index {index}\n");
+            Console.WriteLine($"Selected {options[index]} at index {index}\n");
 
             (index, option) = menu.CliMenu("Choose gender", ["Male", "Female", "March 14", "Others"]);
-            Console.WriteLine($"\nSelected {option} at index {index}\n");
+            Console.WriteLine($"Selected {option} at index {index}\n");
 
             (index, option) = menu.CliMenu("haha", true, options);
-            Console.WriteLine($"\nSelected {options[index]} at index {index}\n");
+            Console.WriteLine($"Selected {options[index]} at index {index}\n");
         }
     }
 }
