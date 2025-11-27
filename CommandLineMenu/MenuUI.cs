@@ -8,11 +8,11 @@ public class MenuUI(IUI ui) : IMenuCLI
     private readonly IUI _ui = ui;
 
     public ConsoleColor SelectedColor { get; set; } = ConsoleColor.Cyan;
-    public (int index, string option) CliMenu(params string[] options) => CliMenu("", false, options);
-    public (int index, string option) CliMenu(string question, params string[] options) => CliMenu(question, false, options);
-    public (int index, string option) CliMenu(bool printTutorial = false, params string[] options) => CliMenu("", printTutorial, options);
+    public (int index, string option) CliMenu(string[] options) => CliMenu("", false, options);
+    public (int index, string option) CliMenu(string question, string[] options) => CliMenu(question, false, options);
+    public (int index, string option) CliMenu(bool printTutorial, string[] options) => CliMenu("", printTutorial, options);
 
-    public (int index, string option) CliMenu(string question, bool printTutorial = false, params string[] options)
+    public (int index, string option) CliMenu(string question, bool printTutorial, string[] options)
     {
         _ui.HideCursor();
 
